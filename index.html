@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="ms">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>ReSlide — Revamp Slide Lama</title>
+  <meta name="description" content="Muat naik slide lama, tekan Generate, dapatkan persembahan beranimasi penuh dengan kandungan yang sama.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap">
+  <link rel="stylesheet" href="assets/css/app.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+</head>
+<body>
+  <div class="glow g1"></div><div class="glow g2"></div>
+
+  <header class="top">
+    <a class="logo" href="./"><span class="logo-mark">R</span>ReSlide</a>
+    <span class="tag">100% dalam pelayar · fail anda tidak dimuat naik ke mana-mana</span>
+  </header>
+
+  <main>
+    <section class="hero">
+      <h1>Slide lama, <span class="grad">wajah baharu.</span></h1>
+      <p>Masukkan slide lama anda, tekan <b>Generate</b>, dan dapatkan persembahan beranimasi penuh yang lebih padu —
+        <b>tanpa mengubah satu pun isi kandungan</b>.</p>
+    </section>
+
+    <section class="panel" id="setup">
+      <div class="step">
+        <div class="step-h"><span class="badge">1</span>Masukkan slide lama</div>
+        <div class="tabs" role="tablist">
+          <button class="tab active" data-tab="file" role="tab">Muat naik fail</button>
+          <button class="tab" data-tab="text" role="tab">Tampal teks</button>
+        </div>
+        <label class="drop" id="drop" data-pane="file">
+          <input type="file" id="file" accept=".pptx,.pdf,.txt,.md" hidden>
+          <div class="drop-icon">⬆</div>
+          <div class="drop-title" id="dropTitle">Seret &amp; lepas fail di sini atau klik untuk pilih</div>
+          <div class="drop-sub">PowerPoint (.pptx) · PDF · Teks (.txt / .md)</div>
+        </label>
+        <div class="paste" data-pane="text" hidden>
+          <textarea id="pasteText" spellcheck="false" placeholder="Tajuk Persembahan
+## Subtajuk
+---
+Slide Kedua
+- Poin pertama
+- Poin kedua
+  - Sub-poin
+---
+Slide Ketiga
+- 85% pelanggan berpuas hati
+- 1,200 pengguna aktif"></textarea>
+          <p class="hint-sm">Pisahkan setiap slide dengan baris <code>---</code>. Baris pertama ialah tajuk, <code>- </code> untuk poin.</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-h"><span class="badge">2</span>Pilih gaya baharu</div>
+        <div class="themes" id="themes"></div>
+        <div class="opts">
+          <label>Transisi
+            <select id="transition"></select>
+          </label>
+          <label>Auto-main
+            <select id="autoplay">
+              <option value="0">Manual</option>
+              <option value="5">Setiap 5 saat</option>
+              <option value="8">Setiap 8 saat</option>
+              <option value="12">Setiap 12 saat</option>
+            </select>
+          </label>
+          <label class="check"><input type="checkbox" id="particles" checked> Latar partikel</label>
+        </div>
+      </div>
+
+      <div class="step center">
+        <button class="btn-gen" id="generate" disabled>
+          <span class="spark">✦</span> Generate
+        </button>
+        <p class="status" id="status" role="status"></p>
+      </div>
+    </section>
+
+    <section class="result" id="result" hidden>
+      <div class="result-bar">
+        <h2 id="deckName">Persembahan baharu</h2>
+        <div class="actions">
+          <button class="btn ghost" id="regen" title="Tukar tema &amp; transisi secara rawak">🎲 Gaya rawak</button>
+          <button class="btn ghost" id="present">▶ Persembahkan</button>
+          <button class="btn" id="download">⬇ Muat turun HTML</button>
+        </div>
+      </div>
+      <div class="viewer">
+        <div class="frame-wrap"><iframe id="preview" title="Pratonton persembahan"></iframe></div>
+        <aside class="outline">
+          <div class="outline-h">Kandungan dikesan <small id="count"></small></div>
+          <p class="hint-sm">Isi kandungan dikekalkan 100%. Anda boleh tukar layout setiap slide.</p>
+          <ol id="slides"></ol>
+        </aside>
+      </div>
+    </section>
+  </main>
+
+  <footer class="foot">ReSlide · Fail HTML yang dimuat turun boleh dibuka di mana-mana pelayar — tekan <kbd>F</kbd> untuk skrin penuh, <kbd>←</kbd> <kbd>→</kbd> untuk navigasi, <kbd>Ctrl</kbd>+<kbd>P</kbd> untuk simpan PDF.</footer>
+
+  <script type="module" src="assets/js/app.js"></script>
+</body>
+</html>
